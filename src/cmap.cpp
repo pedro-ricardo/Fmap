@@ -52,6 +52,17 @@ bool mapIsEmpty(map<string,vec>* mapping){
     return(mapping->empty());
 }
 
+// Clear mapping
+void mapClear(map<string,vec>* mapping){
+    mapping->clear();
+    return;
+}
+
+// Free the mapping pointer
+void mapDestroy(map<string,vec>* mapping){
+    delete mapping;
+    return;
+}
 
 #ifdef __cplusplus
 }

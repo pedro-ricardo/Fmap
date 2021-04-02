@@ -35,6 +35,7 @@ module fmap
             procedure:: get
             procedure:: empty
             procedure:: exists
+            procedure:: destroy
     end type
     ! ------------------------
 
@@ -78,6 +79,20 @@ module fmap
             !Saida:
             logical(c_bool):: isit
         end function mapIsEmpty
+
+        subroutine mapClear(map) bind(c,name="mapClear")
+            use iso_c_binding
+            implicit none
+            !Entrada:
+            type(c_ptr), value:: map
+        end subroutine mapClear
+
+        subroutine mapDestroy(map) bind(c,name="mapDestroy")
+            use iso_c_binding
+            implicit none
+            !Entrada:
+            type(c_ptr), value:: map
+        end subroutine mapDestroy
     end interface
     ! ------------------------
 
@@ -167,6 +182,21 @@ function get(this,key) result(val)
     call c_f_pointer(result%data, val, shape=[result%size])
 
 end function get
+! -----------------------------------------------------------------------------
+
+! -----------------------------------------------------------------------------
+! Clear the dictionary and free the pointer
+subroutine destroy(this)
+    implicit none
+    !Entrada:
+    class(dict), intent(inout):: this
+    !Local:
+    
+    call mapClear(this%map)
+    call mapDestroy(this%map)
+    this%map = c_null_ptr
+    
+end subroutine destroy
 ! -----------------------------------------------------------------------------
 
 end module fmap

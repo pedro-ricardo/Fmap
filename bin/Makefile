@@ -19,6 +19,7 @@ Opt_flags = #-O3 -march=native -flto=8 -fno-fat-lto-objects -fno-strict-aliasing
 COMM_flags = -g
 FC_flags = -ffree-line-length-none -fcheck=all
 CC_flags =
+LFLAGS =  -lstdc++
 
 # Valgrind debug
 Val_flags = --leak-check=full --show-reachable=yes --track-origins=yes
@@ -34,7 +35,7 @@ File_list = test.o fmap.o cmap.o
 #------------------------
 # Build
 all: $(File_list)
-	$(FC_Lin) *.o -o $(exe) -lstdc++
+	$(FC_Lin) *.o -o $(exe) $(LFLAGS)
 
 
 #------------------------

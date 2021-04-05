@@ -142,7 +142,7 @@ function exists(this) result(doesit)
     !Entrada:
     class(dict), intent(inout):: this
     !Saida:
-    logical(c_bool):: doesit
+    logical:: doesit
     !Local:
     
     doesit = c_associated(this%map)

@@ -26,7 +26,7 @@ Val_flags = --leak-check=full --show-reachable=yes --track-origins=yes
 # Concatenate flags and compiler into one command
 FC_Mod = $(FC) -c $(COMM_flags) $(FC_flags) $(W_flags) $(Opt_flags)
 CC_Mod = $(CC) -c $(COMM_flags) $(CC_flags) $(W_flags)
-FC_Lin = $(FC) -g $(Opt_flags) -lstdc++
+FC_Lin = $(FC) -g $(Opt_flags) 
 
 #List of objects to compile
 File_list = test.o fmap.o cmap.o
@@ -34,7 +34,7 @@ File_list = test.o fmap.o cmap.o
 #------------------------
 # Build
 all: $(File_list)
-	$(FC_Lin) *.o -o $(exe)
+	$(FC_Lin) *.o -o $(exe) -lstdc++
 
 
 #------------------------

@@ -6,7 +6,7 @@
 // g++ -c -g -Wall -Wextra -Werror cmap.cpp
 //
 // #############################################################################
-#include <map>
+#include <unordered_map>
 #include <string>
 using namespace std;
 
@@ -22,13 +22,13 @@ typedef struct vec {
 } vec;
 
 // Initialize pointer by calling map contructor
-void mapInit(map<string,vec>*& mapping){
-    mapping = new map<string,vec>();
+void mapInit(unordered_map<string,vec>*& mapping){
+    mapping = new unordered_map<string,vec>();
     return;
 }
 
 // Insert a value in the map using a key
-void mapAdd(map<string,vec>* mapping, char* fkey, int n, double* data){
+void mapAdd(unordered_map<string,vec>* mapping, char* fkey, int n, double* data){
     // Convert char* to string
     string key(fkey);
     // Fill the vec type
@@ -41,25 +41,25 @@ void mapAdd(map<string,vec>* mapping, char* fkey, int n, double* data){
 }
 
 // Get a value from map using a key
-vec mapGet(map<string,vec>* mapping, char* fkey){
+vec mapGet(unordered_map<string,vec>* mapping, char* fkey){
     // Convert char* to string
     string key(fkey);
     return(mapping->find(key)->second);
 }
 
 // Check id map is empty
-bool mapIsEmpty(map<string,vec>* mapping){
+bool mapIsEmpty(unordered_map<string,vec>* mapping){
     return(mapping->empty());
 }
 
 // Clear mapping
-void mapClear(map<string,vec>* mapping){
+void mapClear(unordered_map<string,vec>* mapping){
     mapping->clear();
     return;
 }
 
 // Free the mapping pointer
-void mapDestroy(map<string,vec>* mapping){
+void mapDestroy(unordered_map<string,vec>* mapping){
     delete mapping;
     return;
 }
